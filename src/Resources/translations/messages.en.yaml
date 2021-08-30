@@ -7,3 +7,8 @@ sylius:
                     anonymize: Anonymize
                     export_data: Export data
                     gdpr_title: GDPR
+                advanced_actions:
+                    title: Advanced actions
+                    anonymize_customer_not_logged_since:
+                        label: Anonymize customer not logged since
+        execute: Execute
