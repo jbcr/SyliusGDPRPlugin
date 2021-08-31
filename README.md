@@ -66,11 +66,11 @@
 
 4. Import routing in your `config/routes.yaml` file:
 
-    ```yaml
-    synolia_gdpr:
-        resource: "@SynoliaSyliusGDPRPlugin/Resources/config/routes/admin/customer.yaml"
-        prefix: '/%sylius_admin.path_name%'
-    ```
+     ```yaml
+     synolia_gdpr:
+         resource: "@SynoliaSyliusGDPRPlugin/Resources/config/routes.yaml"
+         prefix: '/%sylius_admin.path_name%'
+     ```
 
 5. Clear cache
 
@@ -103,6 +103,24 @@ Sylius\Component\Core\Model\Address: # Your class path
  ```
 
    Value can be null, an array, an int and a string
+
+## Add form in advanced actions page
+
+There's two steps to add your custom form into the page:
+
+   - Override the controller service by setting the link of your FormType in the $formsType variable
+
+ ```yaml
+    Synolia\SyliusGDPRPlugin\Controller\AdvancedActionsController:
+        arguments:
+            $formsType:
+                - 'Synolia\SyliusGDPRPlugin\Form\Type\Actions\AnonymizeCustomerNotLoggedSinceType2'
+        tags: ['controller.service_arguments']
+ ```
+
+   - Then create your form processor by implementing Synolia\SyliusGDPRPlugin\Processor\AnonymizerProcessor\AdvancedActionsFormDataProcessorInterface
+
+[There](src/Processor/AdvancedActions/AnonymizeCustomerNotLoggedBeforeProcessor.php) a form processor example
 
 ## Development
 
